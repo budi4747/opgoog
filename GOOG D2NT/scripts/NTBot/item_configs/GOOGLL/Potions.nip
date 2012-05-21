@@ -1,0 +1,23 @@
+//=========================
+//         POTIONS
+//=========================
+
+[Name] == MinorHealingPotion
+[Name] == MinorManaPotion
+
+[Name] == Light HealingPotion
+[Name] == LightManaPotion
+
+[Name] == HealingPotion
+[Name] == ManaPotion
+
+[Name] == GreaterHealingPotion
+[Name] == GreaterManaPotion
+
+[Name] == SuperHealingPotion
+[Name] == SuperManaPotion
+
+[Name] == RejuvenationPotion
+[Name] == FullRejuvenationPotion
+
+[Name] == StaminaPotion

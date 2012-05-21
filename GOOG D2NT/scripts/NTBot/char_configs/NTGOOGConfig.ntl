@@ -1,0 +1,59 @@
+function NTGC_GOOGDynLoad() {
+	NTGC_RemovePossibleQuest(NTConfig_RemovePossibleQuest);
+	NTGC_loadQuestPickit(NTConfig_Script);
+	NTGC_PushAcroScripts(NTConfig_AcroScript);
+	NTGC_FixNTConfigScript(NTConfig_Script);
+}
+
+function NTGC_RemovePossibleQuest(_possibleQuestToRemove) {
+	if (arrayExist(_possibleQuestToRemove) && arrayExist(NTConfig_possibleQuest))
+		for(var x = 0; x < _possibleQuestToRemove.length; x++)
+			for(var i = 0; i < NTConfig_possibleQuest.length; i++)
+				if(NTConfig_possibleQuest[i] == _possibleQuestToRemove[x])
+					NTConfig_possibleQuest.splice(i,1);
+}
+
+function NTGC_loadQuestPickit(_scripts) {
+	if (_scripts.indexOf("WPGrabber") != -1 && NTConfig_NIPFilePath.indexOf("WPGrabber") == -1)
+		NTConfig_NIPFilePath.push("Quest.nip");
+}
+
+function NTGC_LoadGeneralConfigs(_path, _configs) {
+	for(var i = 0; i < _configs.length; i++)
+		Include("NTBot/char_configs/" + _path + "/NTConfig_" + _configs[i] + ".ntl");
+}
+
+function NTGC_LoadNIP(_path, _nipFiles) {
+	for(var i = 0; i < _nipFiles.length; i++)
+		if (NTConfig_NIPFilePath.indexOf(_nipFiles[i]) == -1)
+			NTConfig_NIPFilePath.push(_path + "/" + _nipFiles[i] + ".nip");
+}
+
+function NTGC_PushAcroScripts(_acroScripts) {
+	for (var i = 0; i < _acroScripts.length; i++)
+		if(NTConfig_Script.indexOf(NTC_GetNTScript(_acroScripts[i]) == -1))
+			NTConfig_Script.push(NTC_GetNTScript(_acroScripts[i]));
+}
+
+function NTGC_FixNTConfigScript(_scripts)
+{
+	var _scriptName = "";
+	var counter = 0;
+	NTConfig_Script = new Array();
+	for (var i = 0; i < _scripts.length; i++)
+	{
+		if (_scripts[i])
+			if(_scripts[i].indexOf("NT") == -1)
+				_scriptName = "NT" + _scripts[i];
+			else
+				_scriptName = _scripts[i];
+		else 
+			_scriptName = false;
+			
+		if(_scriptName && _scriptName.indexOf(".ntj") == -1)
+			_scriptName += ".ntj";
+		
+		if (_scriptName)
+			NTConfig_Script.push(_scriptName.split(' ').join(''));
+	}
+}
