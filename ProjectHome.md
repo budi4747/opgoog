@@ -1,0 +1,1 @@
+OPGOOG is a smooth botting system that work on D2NT or D2BS and it include some REDVEX plugin. All the source is open to public and we hope to get a community.
